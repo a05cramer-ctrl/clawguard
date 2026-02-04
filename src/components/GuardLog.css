@@ -1,0 +1,125 @@
+.guard-log {
+  background: linear-gradient(135deg, rgba(30, 10, 10, 0.9) 0%, rgba(15, 5, 5, 0.95) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.guard-log::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ef4444, transparent);
+}
+
+.log-container {
+  flex: 1;
+  max-height: 280px;
+  overflow-y: auto;
+  background: rgba(10, 5, 5, 0.8);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: 6px;
+  padding: 0.75rem;
+  position: relative;
+}
+
+/* Terminal-style scanline effect */
+.log-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(239, 68, 68, 0.02) 2px,
+    rgba(239, 68, 68, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+.log-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.log-container::-webkit-scrollbar-track {
+  background: rgba(10, 5, 5, 0.5);
+  border-radius: 3px;
+}
+
+.log-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #dc2626, #7f1d1d);
+  border-radius: 3px;
+}
+
+.log-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ef4444, #991b1b);
+}
+
+.log-entry {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.625rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.log-entry:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.log-entry:not(:last-child) {
+  border-bottom: 1px solid rgba(239, 68, 68, 0.1);
+}
+
+.log-timestamp {
+  color: #ef4444;
+  font-weight: 600;
+  flex-shrink: 0;
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+.log-message {
+  color: #fca5a5;
+}
+
+.log-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #7f1d1d;
+  font-style: italic;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Animate new entries */
+.log-entry:first-child {
+  animation: logSlideIn 0.4s ease;
+}
+
+@keyframes logSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+    background: rgba(239, 68, 68, 0.2);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    background: transparent;
+  }
+}

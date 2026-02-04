@@ -1,0 +1,16 @@
+.typewriter {
+  font-family: 'Share Tech Mono', monospace;
+  color: #fca5a5;
+}
+
+.cursor {
+  color: #ef4444;
+  animation: blink 0.8s infinite;
+  font-weight: 300;
+  text-shadow: 0 0 10px #ef4444;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
